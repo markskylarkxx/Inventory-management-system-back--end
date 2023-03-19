@@ -3,6 +3,7 @@ package com.inventory.mgt.sytem.inventory.mgt.system.service;
 import com.inventory.mgt.sytem.inventory.mgt.system.dto.*;
 import com.inventory.mgt.sytem.inventory.mgt.system.exception.AppException;
 import com.inventory.mgt.sytem.inventory.mgt.system.exception.ResourceNotFoundException;
+import com.inventory.mgt.sytem.inventory.mgt.system.extras.PasswordGeneration;
 import com.inventory.mgt.sytem.inventory.mgt.system.extras.PasswordValidation;
 import com.inventory.mgt.sytem.inventory.mgt.system.model.LoginHistory;
 import com.inventory.mgt.sytem.inventory.mgt.system.model.Role;
@@ -84,9 +85,10 @@ public class AuthenticationService {
               request.getGender());
 
        //todo; generate an automatic password;
-      // String plainPassword = PasswordGeneration.randomPassword(size);
+      String plainPassword = PasswordGeneration.randomPassword(size);
 
-      String plainPassword = "1234567";
+
+
 
        // todo; encode this plain password;
 
@@ -103,8 +105,6 @@ public class AuthenticationService {
        log.info("User role has been assigned to user with username " + request.getUsername());
        user.setActive(Boolean.FALSE);
        repository.save(user);
-       boolean matches = encoder.matches(plainPassword, user.getPassword());
-       System.out.println(">>>>>>>>>>>>>>>>>>>" + matches);
 
        // email the user to reset their password;
        // create  url link, send the plain text password to the user's email

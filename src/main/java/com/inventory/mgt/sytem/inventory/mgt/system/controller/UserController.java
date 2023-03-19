@@ -94,35 +94,6 @@ public class UserController {
     public Long getAdminLoggedInCount(){
       return  loginHistoryRepo.count();
     }
-    public  User getLoggedInUser(Principal principal){
-        return  userService.getLoggedInUser(principal);
-    }
-
-
-
-
-
-    @Autowired
-    UserRepository userRepository;
-
-    private static  final List<Object> admin_access = Arrays.asList(RoleName.ROLE_USER);
-    //2) get role of logged in user;
-       @GetMapping("/role")
-    public List<SimpleGrantedAuthority> getRoleByLoggedInUser(Principal principal){
-
-           Set<Role> roles = getLoggedInUser(principal).getRoles();
-        List<SimpleGrantedAuthority> assignRole= roles.stream().map(role -> new
-                SimpleGrantedAuthority(role.getRoleName().name())).collect(Collectors.toList());
-          // System.out.println(assignRole);
-           String s = assignRole.stream().map(m -> m.getAuthority().equals(RoleName.ROLE_ADMIN)).toString();
-
-           String collect = assignRole.stream().map(m -> m.getAuthority()).toString();
-           System.out.println(">>>>" + collect);
-           Boolean B =  collect.equals("ROLE_ADMIN");
-           System.out.println("<<<<"+ B);
-           return  assignRole;
-
-       }
 
 
 }

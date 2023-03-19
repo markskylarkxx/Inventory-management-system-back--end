@@ -108,8 +108,8 @@ public  ResponseEntity<Product> mostSoldProductByInterval(@RequestParam("start")
 }
 
 
-
- @Scheduled(cron = "0 */20 23 * * *")
+   // Remind the owner of the inventory by 8:30 every day of product getting exhausted
+ @Scheduled(cron = "0 */30 8 * * *")
     public  void setReminder(){
     service.setReminder();
  }

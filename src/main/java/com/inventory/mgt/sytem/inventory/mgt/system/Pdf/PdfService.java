@@ -36,11 +36,6 @@ public class PdfService {
     @Autowired
     SalesReceiptRepo salesReceiptRepo;
 
-    // name of product bought;
-    // quantity of product bought;
-    // amount
-    // person who sold the product;
-    // total price
 
     public  void export(HttpServletResponse response, SalesOrder salesOrder) throws IOException {
 
